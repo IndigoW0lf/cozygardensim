@@ -1,23 +1,31 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.css';
+import Garden from './components/Garden';
+import Sidebar from './components/Sidebar';
+import Plant from './components/Plant';
+import MagicIndicator from './components/MagicIndicator';
+import GameLogicManager from './components/GameLogicManager';
+import { ambientMagicAssessment } from './functions/magicFunctions';
 
 function App() {
+  const [magicReport, setMagicReport] = useState('');
+
+  useEffect(() => {
+    const report = ambientMagicAssessment('full moon', 'forest edge', true);
+    setMagicReport(report);
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        {/* Display the result */}
+        <p>{magicReport}</p>
       </header>
+      <Sidebar />
+      <Garden />
+      <Plant />
+      <MagicIndicator />
+      <GameLogicManager />
     </div>
   );
 }
