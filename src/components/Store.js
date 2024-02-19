@@ -1,4 +1,3 @@
-// src/components/Store.js
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { spendCoins } from '../store/actions/playerActions';
