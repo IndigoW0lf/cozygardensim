@@ -100,7 +100,10 @@ const gardenReducer = (state = initialState, action) => {
     case UPDATE_MAGIC_CONDITIONS:
       return {
         ...state,
-        magicConditions: { ...state.magicConditions, ...action.payload },
+        magicConditions: {
+          ...state.magicConditions,
+          ...action.payload, // Merge new conditions into existing ones
+        },
       };
     case REMOVE_PLANT:
       return {
