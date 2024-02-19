@@ -62,28 +62,37 @@ const gardenReducer = (state = initialState, action) => {
         ),
       };
     case UPDATE_GROWTH_STAGE:
+      // In gardenReducer.js, within the case UPDATE_GROWTH_STAGE:
       return {
         ...state,
         plants: state.plants.map((plant) => {
           if (plant.id === action.payload.plantId) {
-            if (action.payload.nextStage) {
-              const currentStageIndex = growthStages.indexOf(plant.growthStage);
+            let { timeUntilNextStage, growthStage } = plant;
+            if (action.payload.decrement) {
+              timeUntilNextStage = Math.max(
+                0,
+                timeUntilNextStage - action.payload.modifier
+              );
+              // Check if it's time to advance to the next stage
+              if (timeUntilNextStage === 0) {
+                const currentStageIndex = growthStages.indexOf(growthStage);
+                const nextStage =
+                  growthStages[currentStageIndex + 1] || growthStage; // Prevent advancing beyond the last stage
+                return {
+                  ...plant,
+                  growthStage: nextStage,
+                  timeUntilNextStage: getNextStageTime(nextStage),
+                };
+              }
+            } else if (action.payload.nextStage) {
+              // Logic for advancing to the next stage immediately
+              const currentStageIndex = growthStages.indexOf(growthStage);
               const nextStage =
-                growthStages[currentStageIndex + 1] || plant.growthStage; // Prevent advancing beyond the last stage
-              return {
-                ...plant,
-                growthStage: nextStage,
-                timeUntilNextStage: getNextStageTime(nextStage),
-              };
-            } else if (
-              action.payload.decrement &&
-              plant.timeUntilNextStage > 0
-            ) {
-              return {
-                ...plant,
-                timeUntilNextStage: plant.timeUntilNextStage - 1,
-              };
+                growthStages[currentStageIndex + 1] || growthStage;
+              growthStage = nextStage;
+              timeUntilNextStage = getNextStageTime(nextStage);
             }
+            return { ...plant, timeUntilNextStage, growthStage };
           }
           return plant;
         }),
