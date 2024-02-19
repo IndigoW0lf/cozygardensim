@@ -1,22 +1,26 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { updatePlantGrowth } from '../actions/gardenActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateGrowthStage } from '../store/actions/gardenActions';
 
-const GameLogicManager = ({ plants }) => {
+
+const GameLogicManager = () => {
   const dispatch = useDispatch();
+  const plants = useSelector((state) => state.garden.plants);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      // Example logic to update each plant's growth
+    const growthInterval = setInterval(() => {
       plants.forEach((plant) => {
-        // Simplified: just incrementing growth stage as an example
-        const newGrowthStage = plant.growthStage + 1;
-        dispatch(updatePlantGrowth(plant.id, newGrowthStage));
+        if (plant.timeUntilNextStage > 0) {
+          dispatch(updateGrowthStage(plant.id, { decrement: true }));
+        } else {
+          // Logic to update to next growth stage and reset timer
+          dispatch(updateGrowthStage(plant.id, { nextStage: true }));
+        }
       });
-    }, 60000); // Update every 60 seconds
+    }, 60000); // Check every minute
 
-    return () => clearInterval(timer);
-  }, [plants, dispatch]);
+    return () => clearInterval(growthInterval);
+  }, [dispatch, plants]);
 
   return null; // This component does not render anything
 };

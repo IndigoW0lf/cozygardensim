@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addPlant } from '../actions/gardenActions';
+import { addPlant } from '../store/actions/gardenActions';
 import Plant from './Plant';
 import { nanoid } from 'nanoid'; // Import nanoid
 
