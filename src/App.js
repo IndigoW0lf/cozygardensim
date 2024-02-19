@@ -5,6 +5,7 @@ import Sidebar from './components/Sidebar';
 import Plant from './components/Plant';
 import MagicIndicator from './components/MagicIndicator';
 import GameLogicManager from './components/GameLogicManager';
+import Store from './components/Store';
 import { ambientMagicAssessment } from './functions/magicFunctions';
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
       <Plant />
       <MagicIndicator />
       <GameLogicManager />
+      <Store />
     </div>
   );
 }
