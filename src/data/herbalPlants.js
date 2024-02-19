@@ -179,5 +179,104 @@ export const herbalPlants = [
     sunlight: "Full",
     soilType: "Dry, well-drained",
     specialAbilities: "Reduces stress, increases energy levels."
-  }
+  },
+  {
+    name: "Lemon Grass",
+    type: "Medicinal",
+    growthTime: "Fast",
+    waterNeeds: "High",
+    sunlight: "Full",
+    soilType: "Rich, well-drained",
+    specialAbilities: "Relieves anxiety, lowers cholesterol."
+},
+{
+    name: "Gentian",
+    type: "Medicinal",
+    growthTime: "Slow",
+    waterNeeds: "Moderate",
+    sunlight: "Full to Partial",
+    soilType: "Well-drained, neutral to acidic",
+    specialAbilities: "Aids digestion, heals wounds."
+},
+{
+    name: "St John's Wort",
+    type: "Medicinal",
+    growthTime: "Medium",
+    waterNeeds: "Low to Moderate",
+    sunlight: "Full",
+    soilType: "Well-drained, not too fertile",
+    specialAbilities: "Treats depression, anti-inflammatory."
+},
+{
+    name: "Elderberry",
+    type: "Medicinal",
+    growthTime: "Slow",
+    waterNeeds: "Moderate to High",
+    sunlight: "Full to Partial",
+    soilType: "Moist, fertile",
+    specialAbilities: "Boosts immune system, fights flu symptoms."
+},
+{
+    name: "Ginger",
+    type: "Medicinal",
+    growthTime: "Medium",
+    waterNeeds: "Moderate",
+    sunlight: "Partial Shade",
+    soilType: "Rich, well-drained, moist",
+    specialAbilities: "Relieves nausea, reduces muscle pain."
+},
+{
+    name: "Marshmallow",
+    type: "Medicinal",
+    growthTime: "Slow",
+    waterNeeds: "High",
+    sunlight: "Full to Partial",
+    soilType: "Moist, well-drained",
+    specialAbilities: "Soothes sore throat, supports skin health."
+},
+{
+    name: "Milk Thistle",
+    type: "Medicinal",
+    growthTime: "Medium",
+    waterNeeds: "Low",
+    sunlight: "Full",
+    soilType: "Well-drained",
+    specialAbilities: "Detoxifies liver, promotes skin health."
+},
+{
+    name: "Sorrel",
+    type: "Medicinal",
+    growthTime: "Fast",
+    waterNeeds: "Moderate",
+    sunlight: "Full to Partial",
+    soilType: "Moist, well-drained",
+    specialAbilities: "Rich in vitamins, aids in digestion."
+},
+{
+    name: "Mullein",
+    type: "Medicinal",
+    growthTime: "Medium",
+    waterNeeds: "Low",
+    sunlight: "Full",
+    soilType: "Well-drained, sandy",
+    specialAbilities: "Improves respiratory health, anti-inflammatory."
+},
+{
+    name: "Horehound",
+    type: "Medicinal",
+    growthTime: "Medium",
+    waterNeeds: "Low",
+    sunlight: "Full",
+    soilType: "Well-drained, poor",
+    specialAbilities: "Aids digestion, expectorant for coughs."
+},
+{
+    name: "Yarrow",
+    type: "Medicinal",
+    growthTime: "Fast",
+    waterNeeds: "Low",
+    sunlight: "Full",
+    soilType: "Well-drained",
+    specialAbilities: "Stops bleeding, reduces fever."
+}
 ];
