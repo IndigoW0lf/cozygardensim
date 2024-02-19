@@ -1,3 +1,6 @@
+import { nanoid } from 'nanoid';
+import { determineOffspringName } from '../../functions/plantFunctions';
+
 // Action Types
 export const ADD_PLANT = 'ADD_PLANT';
 export const BREED_PLANTS = 'BREED_PLANTS';
@@ -13,10 +16,35 @@ export const addPlant = (plant) => ({
   payload: plant,
 });
 
-export const breedPlants = (parentPlantId1, parentPlantId2) => ({
-  type: BREED_PLANTS,
-  payload: { parentPlantId1, parentPlantId2 },
-});
+export const breedPlants =
+  (parentPlantId1, parentPlantId2) => (dispatch, getState) => {
+    const { plants } = getState().garden;
+    const parent1 = plants.find((plant) => plant.id === parentPlantId1);
+    const parent2 = plants.find((plant) => plant.id === parentPlantId2);
+
+    // Basic trait inheritance (e.g., average growth rate of parents)
+    const offspringGrowthRate = (parent1.growthRate + parent2.growthRate) / 2;
+
+    // Simple mutation chance
+    const mutationChance = 0.05; // 5% chance
+    const doesMutate = Math.random() < mutationChance;
+    const mutatedGrowthRate = doesMutate
+      ? offspringGrowthRate * 1.2
+      : offspringGrowthRate;
+
+    const offspring = {
+      id: nanoid(),
+      name: determineOffspringName(parent1, parent2),
+      growthStage: 'seed',
+      growthRate: mutatedGrowthRate,
+      // Add other traits here
+    };
+
+    dispatch({
+      type: ADD_PLANT,
+      payload: offspring,
+    });
+  };
 
 export const harvestPlant = (plantId) => ({
   type: HARVEST_PLANT,
