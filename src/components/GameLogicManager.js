@@ -1,50 +1,39 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { updateGrowthStage } from '../store/actions/gardenActions';
-import { updateMagicConditions } from '../store/actions/gardenActions';
+import { useStore } from 'react-redux';
+import { updateGrowthStage, updateMagicConditions } from '../store/actions/gardenActions';
 
 const GameLogicManager = () => {
-  const dispatch = useDispatch();
-  const plants = useSelector((state) => state.garden.plants);
-  const magicConditions = useSelector((state) => state.garden.magicConditions);
-
+  const store = useStore();
 
   useEffect(() => {
+    // Read current state at each tick. Subscribing this interval to plants or
+    // moon changes would restart it and delay growth whenever they change.
     const growthInterval = setInterval(() => {
+      const { plants, magicConditions } = store.getState().garden;
       plants.forEach((plant) => {
-        let growthModifier = 1; // Default growth speed
-        if (magicConditions.fullMoon && plant.type === 'Moonflower') {
-          growthModifier = 0.5; // Grows twice as fast
-        }
+        const modifier = magicConditions.fullMoon && plant.type === 'Moonflower' ? 2 : 1;
         if (plant.timeUntilNextStage > 0) {
-          dispatch(
-            updateGrowthStage(plant.id, {
-              decrement: true,
-              modifier: growthModifier,
-            })
-          );
+          store.dispatch(updateGrowthStage(plant.id, { decrement: true, modifier }));
         } else {
-          // Logic to update to next growth stage and reset timer
-          dispatch(updateGrowthStage(plant.id, { nextStage: true }));
+          store.dispatch(updateGrowthStage(plant.id, { nextStage: true }));
         }
       });
-    }, 60000); // Check every minute
-
+    }, 60000);
     return () => clearInterval(growthInterval);
-  }, [dispatch, plants, magicConditions]); // Ensure magicConditions is part of useEffect dependency array
+  }, [store]);
 
   useEffect(() => {
-    const magicConditionInterval = setInterval(() => {
-      // Example: Randomly change magic conditions
-      const newCondition = { fullMoon: Math.random() > 0.5 };
-      dispatch(updateMagicConditions(newCondition));
-    }, 100000); // Change condition every 100 seconds for demonstration
+    const magicInterval = setInterval(() => {
+      const fullMoon = Math.random() > 0.5;
+      store.dispatch(updateMagicConditions({
+        fullMoon,
+        currentMoonPhase: fullMoon ? 'full moon' : 'new moon',
+      }));
+    }, 100000);
+    return () => clearInterval(magicInterval);
+  }, [store]);
 
-    return () => clearInterval(magicConditionInterval);
-  }, [dispatch]);
-
-
-  return null; // This component does not render anything
+  return null;
 };
 
 export default GameLogicManager;

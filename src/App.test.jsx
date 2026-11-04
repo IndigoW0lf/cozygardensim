@@ -1,0 +1,55 @@
+import { test, expect, vi, beforeEach, afterEach } from 'vitest';
+import React from 'react';
+import { render, screen, fireEvent, cleanup, act } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import App from './App';
+import rootReducer from './store/reducers';
+
+vi.mock('nanoid', () => ({ nanoid: () => 'test-sunflower' }));
+
+beforeEach(() => vi.useFakeTimers());
+afterEach(() => {
+  cleanup();
+  vi.clearAllTimers();
+  vi.useRealTimers();
+});
+
+function renderGarden() {
+  const store = createStore(rootReducer);
+  render(<Provider store={store}><App /></Provider>);
+  return store;
+}
+
+test('the application renders its garden and catalog without missing-state crashes', () => {
+  const store = renderGarden();
+  expect(screen.getByRole('heading', { name: 'Cozy Garden Simulator' })).toBeTruthy();
+  expect(screen.getByRole('heading', { name: 'Plants to discover' })).toBeTruthy();
+  expect(screen.queryByRole('button', { name: 'Purchase' })).toBeNull();
+  fireEvent.click(screen.getByRole('button', { name: 'Plant a sunflower' }));
+  expect(screen.getByRole('heading', { name: 'Sunflower' })).toBeTruthy();
+  expect(store.getState().garden.plants[0]).toMatchObject({
+    id: 'test-sunflower', growthStage: 'seed', timeUntilNextStage: 5,
+  });
+});
+
+test('the displayed plant advances after five simulated minute ticks', () => {
+  renderGarden();
+  fireEvent.click(screen.getByRole('button', { name: 'Plant a sunflower' }));
+  expect(screen.getByText('Stage: seed')).toBeTruthy();
+  for (let tick = 0; tick < 5; tick += 1) {
+    act(() => { vi.advanceTimersByTime(60000); });
+  }
+  expect(screen.getByText('Stage: sprouting')).toBeTruthy();
+});
+
+test('a moon change between ticks does not postpone growth', () => {
+  const store = renderGarden();
+  fireEvent.click(screen.getByRole('button', { name: 'Plant a sunflower' }));
+  act(() => { vi.advanceTimersByTime(60000); });
+  expect(store.getState().garden.plants[0].timeUntilNextStage).toBe(4);
+  act(() => { vi.advanceTimersByTime(30000); });
+  act(() => { store.dispatch({ type: 'UPDATE_MAGIC_CONDITIONS', payload: { fullMoon: true } }); });
+  act(() => { vi.advanceTimersByTime(30000); });
+  expect(store.getState().garden.plants[0].timeUntilNextStage).toBe(3);
+});
