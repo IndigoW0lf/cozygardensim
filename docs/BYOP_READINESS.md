@@ -17,7 +17,7 @@ Assessment against the supplied requirements; no guarantee of acceptance.
 | Assets | Inherited binaries matched to upstream MIT template; removed from current app; current icon is source-authored |
 | Dependency licenses | Runtime MIT; locked development licenses are MIT, Apache-2.0, BSD-2-Clause, BSD-3-Clause, ISC and MPL-2.0; no missing/unlisted metadata identified |
 | Dependencies | npm audit found zero known vulnerabilities at preparation time; CI repeats the check |
-| Runtime verification | Four Vitest checks and Vite build pass locally; built-app desktop/mobile Chromium checks run in PR CI |
+| Runtime verification | Five Vitest checks and Vite build pass locally; built-app desktop/mobile Chromium checks run in PR CI |
 | Excluded AI work | No AI model development/evaluation/training, inference service or compute infrastructure in the app |
 | Assistant collaboration | Small simulation/state transitions and observable browser behavior support human-directed, testable engineering |
 

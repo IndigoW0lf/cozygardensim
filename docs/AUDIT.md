@@ -55,3 +55,9 @@ The original repository used standard CRA scaffolding, disclosed in provenance. 
 ## Still-real development work
 
 Elapsed-time simulation, the purchase/harvest/reward loop, save/recovery, breeding invariants, original visual scenes and broader accessibility testing remain. None is represented as complete. Preparation already performed is excluded from the future hour estimate. See ROADMAP.md.
+
+## Browser-discovered timer repair
+
+[The first migrated CI run](https://github.com/IndigoW0lf/cozygardensim/actions/runs/41926383808) passed install, licenses, advisories, four unit tests, build, secret scans and both planting/browser scenarios. Both timed-growth browser scenarios failed. Moon changes were restarting the growth effect, discarding part of each minute. The timer bridge now reads current Redux state on a stable interval rather than subscribing the interval lifecycle to changing plant/moon values. A fifth unit regression covers a moon update between ticks. The same unchanged five-minute browser expectation is retained; it must pass on the repaired head.
+
+This repairs the interval restart bug. It does not implement elapsed-time/offline simulation, which remains a separate roadmap task.

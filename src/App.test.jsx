@@ -42,3 +42,14 @@ test('the displayed plant advances after five simulated minute ticks', () => {
   }
   expect(screen.getByText('Stage: sprouting')).toBeTruthy();
 });
+
+test('a moon change between ticks does not postpone growth', () => {
+  const store = renderGarden();
+  fireEvent.click(screen.getByRole('button', { name: 'Plant a sunflower' }));
+  act(() => { vi.advanceTimersByTime(60000); });
+  expect(store.getState().garden.plants[0].timeUntilNextStage).toBe(4);
+  act(() => { vi.advanceTimersByTime(30000); });
+  act(() => { store.dispatch({ type: 'UPDATE_MAGIC_CONDITIONS', payload: { fullMoon: true } }); });
+  act(() => { vi.advanceTimersByTime(30000); });
+  expect(store.getState().garden.plants[0].timeUntilNextStage).toBe(3);
+});
