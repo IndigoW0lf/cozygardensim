@@ -14,7 +14,7 @@ const GameLogicManager = () => {
       plants.forEach((plant) => {
         let growthModifier = 1; // Default growth speed
         if (magicConditions.fullMoon && plant.type === 'Moonflower') {
-          growthModifier = 0.5; // Grows twice as fast
+          growthModifier = 2; // Decrement twice as much time per tick
         }
         if (plant.timeUntilNextStage > 0) {
           dispatch(
@@ -36,7 +36,11 @@ const GameLogicManager = () => {
   useEffect(() => {
     const magicConditionInterval = setInterval(() => {
       // Example: Randomly change magic conditions
-      const newCondition = { fullMoon: Math.random() > 0.5 };
+      const fullMoon = Math.random() > 0.5;
+      const newCondition = {
+        fullMoon,
+        currentMoonPhase: fullMoon ? 'full moon' : 'new moon',
+      };
       dispatch(updateMagicConditions(newCondition));
     }, 100000); // Change condition every 100 seconds for demonstration
 

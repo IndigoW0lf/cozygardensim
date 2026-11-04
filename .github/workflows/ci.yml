@@ -1,0 +1,24 @@
+name: Prototype checks
+on:
+  push:
+    branches: [main, revive/cozy-garden-baseline]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --global yarn@1.22.22
+      - run: yarn install --frozen-lockfile
+      - run: yarn test --watchAll=false --runInBand
+        env:
+          CI: 'true'
+      - run: yarn build
+        env:
+          CI: 'true'

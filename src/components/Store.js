@@ -1,36 +1,14 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { spendCoins } from '../store/actions/playerActions';
-import { addPlant } from '../store/actions/gardenActions';
+import { herbalPlants } from '../data/herbalPlants';
 
-const Store = () => {
-  const dispatch = useDispatch();
-  const { coins, level } = useSelector((state) => state.player);
-  const herbalPlants = useSelector((state) =>
-    state.herbalPlants.filter((plant) => plant.requiredLevel <= level)
-  );
-
-  const handlePurchase = (plant) => {
-    if (coins >= plant.cost) {
-      dispatch(spendCoins(plant.cost));
-      dispatch(addPlant(plant));
-      // Implement additional logic as needed (e.g., adding the plant to the player's inventory or garden)
-    } else {
-      alert('Not enough coins.');
-    }
-  };
-
-  return (
-    <div>
-      {herbalPlants.map((plant) => (
-        <div key={plant.name}>
-          <h3>{plant.name}</h3>
-          <p>Cost: {plant.cost} coins</p>
-          <button onClick={() => handlePurchase(plant)}>Purchase</button>
-        </div>
-      ))}
-    </div>
-  );
-};
+const Store = () => (
+  <section aria-labelledby="catalog-title">
+    <h2 id="catalog-title">Plants to discover</h2>
+    <p>The seed shop is planned. Purchases and harvest rewards are not available yet.</p>
+    <ul>
+      {herbalPlants.map((plant) => <li key={plant.name}>{plant.name}</li>)}
+    </ul>
+  </section>
+);
 
 export default Store;
