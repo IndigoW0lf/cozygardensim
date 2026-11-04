@@ -81,4 +81,4 @@ Multiplayer, accounts, cloud saves, marketplaces, telemetry and payments would r
 
 Milestones 1, 2 and 3 provide approximately **20–32 hours** of useful engineering work. Include implementation-specific tests and documentation in those estimates; do not count the same QA twice.
 
-This block is appropriate only if Kai genuinely intends to build it. Do not expand scope merely to reach an hour threshold. Record actual time and preserve natural commits. Preparation already completed in this PR must not be described as future work.
+This block is appropriate only if Kai genuinely intends to build it. Do not expand scope merely to reach an hour threshold. Record actual time and preserve natural commits. Preparation already completed during the revival must not be described as future work.

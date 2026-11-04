@@ -41,9 +41,10 @@ npm ci --ignore-scripts
 npm run dev
 ```
 
-Open the address printed by Vite, normally <http://127.0.0.1:5173>. While the revival PR is open, check out `revive/cozy-garden-baseline` to review these changes.
+Open the address printed by Vite, normally <http://127.0.0.1:5173>.
 
 ```sh
+npm run check                    # license consistency, unit tests and production build
 npm test                         # Vitest regression suites, one run
 npm run test:watch               # interactive test development
 npm run build                    # static production output in dist/
@@ -103,6 +104,10 @@ docs/BYOP_READINESS.md          Submission preparation facts
 5. **Comfort and polish:** accessible controls, responsive scenes, documented art, optional audio and performance checks.
 
 The [detailed roadmap](docs/ROADMAP.md) defines a roughly **20–32 hour** first block of remaining work. Completed preparation is excluded from that estimate. Hours are planning ranges; Kai should select work she actually wants to build.
+
+## Getting ready to contribute
+
+Start with [CONTRIBUTING.md](CONTRIBUTING.md) for the development workflow, and [AGENTS.md](AGENTS.md) for a concise coding-session handoff. The [submission summary](docs/SUBMISSION_SUMMARY.md) collects current facts and planned work for form preparation.
 
 ## History and contribution boundaries
 

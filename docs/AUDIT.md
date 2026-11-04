@@ -2,7 +2,7 @@
 
 ## Evidence boundary
 
-The original main head was `7a746cdbafec8c1a6faf9e435e5319c76a0d7da5`. The first preparation head was `0452c9dbbb24547283d66f42a9d0976255c175e2`. This pass uses a full clone and extends the same PR branch; it does not rewrite history.
+The original main head was `7a746cdbafec8c1a6faf9e435e5319c76a0d7da5`. The first preparation head was `0452c9dbbb24547283d66f42a9d0976255c175e2`. Preparation used a full clone and extended the existing ancestry. PR #1 was merged on November 4, 2026 with a normal merge commit (`84aa6bad38d7bfa74132163d17163267a8eed0f6`); no commits were squashed or rebased.
 
 Kai confirmed personal ownership on November 4, 2026. That is an owner attestation, not an independent legal determination. No employer/client/university implementation or records were identified in the inspected source. The repository cannot independently prove which resources were used historically.
 
@@ -18,12 +18,12 @@ Kai confirmed personal ownership on November 4, 2026. That is an owner attestati
 | Asset source | Upstream template package declares MIT and includes its license; archived license retained in `legacy-cra-template-LICENSE.txt`; assets removed from current tree |
 | Dependency advisories | `npm audit` returned zero known vulnerabilities at preparation time; advisory state can change |
 | License inventory | All lockfile package records declare a license; runtime dependencies are MIT. Development/optional-platform dependencies use MIT, Apache-2.0, BSD-2-Clause, BSD-3-Clause, ISC or MPL-2.0 |
-| Unit/integration checks | Two Vitest suites, four tests passed after migration; planting and simulated stage transitions covered |
+| Unit/integration checks | Two Vitest suites, five tests passed after the browser-discovered timer repair |
 | Production build | Vite build passed; application license and runtime dependency notices copied to dist |
 | Reproducible installation | `npm ci --ignore-scripts` followed by license verification, tests and build |
-| Browser tests | Desktop/mobile Chromium scenarios committed for the built application; actual CI results must be checked on the PR |
+| Browser tests | Four desktop/mobile Chromium checks passed against the production build in run 41926711489 |
 
-Local browser binaries could not be installed: downloads returned invalid/truncated archives in this workspace. This is not an app test failure and is not presented as a passing local browser test. CI performs the actual Chromium installation and tests. See [PR #1](https://github.com/IndigoW0lf/cozygardensim/pull/1) for the browser result on the current head.
+Local browser binaries could not be installed: downloads returned invalid/truncated archives in this workspace. This is not an app test failure and is not presented as a passing local browser test. CI successfully installed Chromium and passed all four browser checks at `d8203b38d8d582025d57b564ed4b49820ae85719`. See [the successful run](https://github.com/IndigoW0lf/cozygardensim/actions/runs/41926711489). This is automated browser verification, not a manual usability or screen-reader study.
 
 ## Findings repaired
 
@@ -58,6 +58,6 @@ Elapsed-time simulation, the purchase/harvest/reward loop, save/recovery, breedi
 
 ## Browser-discovered timer repair
 
-[The first migrated CI run](https://github.com/IndigoW0lf/cozygardensim/actions/runs/41926383808) passed install, licenses, advisories, four unit tests, build, secret scans and both planting/browser scenarios. Both timed-growth browser scenarios failed. Moon changes were restarting the growth effect, discarding part of each minute. The timer bridge now reads current Redux state on a stable interval rather than subscribing the interval lifecycle to changing plant/moon values. A fifth unit regression covers a moon update between ticks. The same unchanged five-minute browser expectation is retained; it must pass on the repaired head.
+[The first migrated CI run](https://github.com/IndigoW0lf/cozygardensim/actions/runs/41926383808) passed install, licenses, advisories, four unit tests, build, secret scans and both planting/browser scenarios. Both timed-growth browser scenarios failed. Moon changes were restarting the growth effect, discarding part of each minute. The timer bridge now reads current Redux state on a stable interval rather than subscribing the interval lifecycle to changing plant/moon values. A fifth unit regression covers a moon update between ticks. The same unchanged five-minute browser expectation passed on both desktop and mobile in [run 41926711489](https://github.com/IndigoW0lf/cozygardensim/actions/runs/41926711489). That run also passed five unit tests, build, dependency/license checks and both Gitleaks scans; the history scan covered 18 fetched commits with no findings.
 
 This repairs the interval restart bug. It does not implement elapsed-time/offline simulation, which remains a separate roadmap task.
