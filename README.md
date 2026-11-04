@@ -31,7 +31,7 @@ The project currently retains its original **Create React App** toolchain, **Rea
 
 Prerequisites:
 
-- Node.js 22 is the target for the proposed CI workflow; this revival has not yet been verified in a local runtime.
+- Node.js 22 (verified in GitHub Actions; also recorded in .nvmrc).
 - Yarn Classic 1.22.22. If needed: `npm install --global yarn@1.22.22`.
 
 ```sh
@@ -57,7 +57,7 @@ yarn build
 
 On Windows PowerShell, set `$env:CI='true'` before running the test command.
 
-The proposed GitHub Actions workflow runs tests and a production build. A workflow file is not evidence of passing checks: inspect the PR's actual run. This preparation pass could not execute locally because its workspace became unavailable.
+GitHub Actions runs the regression tests and a production build. The initial revival passed installation, all three initial tests and the production build on Node 22; follow-up changes must pass their own checks. Inspect the [PR checks](https://github.com/IndigoW0lf/cozygardensim/pull/1) for the latest commit. A manual browser play-test remains outstanding because the local workspace became unavailable.
 
 ## Code map
 

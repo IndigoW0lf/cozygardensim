@@ -6,7 +6,7 @@ Read-only inspection began at main commit `7a746cdbafec8c1a6faf9e435e5319c76a0d7
 
 This is a **limited source and history review**, not a full secret, dependency, asset-rights or security audit. Historical blobs, all refs/tags, binary assets and the dependency graph have not been comprehensively scanned. Pattern checks on the selected current source files found no obvious provider-token/private-key pattern; that does not establish a secret-free repository.
 
-The execution workspace became unavailable during preparation. No local install, test, production build, browser session or vulnerability scan completed. Added regression tests and CI must be run before treating the baseline as verified.
+The execution workspace became unavailable during preparation, so no local install, browser session or vulnerability scan completed. GitHub Actions subsequently installed the frozen Yarn lockfile, passed both regression suites (3 initial tests), and built production output on Node 22 for commit 0dd04380d9c83755ac58ca38ce6665a0efe0b8a2. See [run 41915177155](https://github.com/IndigoW0lf/cozygardensim/actions/runs/41915177155). A follow-up adds simulated-minute UI coverage, explicit timer cleanup and current v6 CI actions; verify its own run before merge. Real-browser QA and a dependency/security audit remain outstanding.
 
 ## Findings and preparation changes
 
@@ -26,6 +26,7 @@ The execution workspace became unavailable during preparation. No local install,
 
 ## Remaining engineering findings
 
+- The successful CI run reported legacy peer-dependency warnings, an undeclared Babel-plugin dependency and stale Browserslist data. These were not suppressed. A test-run open-handle warning prompted fake-timer cleanup and an additional integrated growth check.
 - Create React App is deprecated. Migration is planned, not completed. See React's [deprecation notice](https://react.dev/blog/2025/02/14/sunsetting-create-react-app).
 - Breeding is split between a thunk action and reducer handling; the current store does not install thunk middleware. No breeding interface is exposed in the revived screen.
 - Growth relies on setInterval and restarts effects as state changes. Background tabs and time away need explicit simulation rules.

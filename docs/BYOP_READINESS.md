@@ -17,7 +17,7 @@ This is a factual preparation note against the supplied program requirements, no
 | Assets / dependencies | Full transitive-license and inherited-asset review outstanding |
 | Assistant collaboration | Small state transitions, simulation rules and observable browser behavior support human-directed, testable work |
 | Excluded AI work | Inspected game has no AI training/evaluation, model infrastructure or model-serving behavior |
-| Runtime | Local execution unavailable during preparation; actual CI and browser verification remain required |
+| Runtime | Initial frozen install, 3 tests and build passed on Node 22 in GitHub Actions; follow-up CI and manual browser verification remain required |
 
 Read [AUDIT.md](AUDIT.md) for scope. Code fixes in the preparation PR are already proposed work; do not include them again in an application as unfinished tasks.
 
