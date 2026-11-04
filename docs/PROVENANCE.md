@@ -1,33 +1,43 @@
-# Provenance and third-party boundaries
+# Provenance and license boundaries
 
-## Existing history
+## Ownership and history
 
-This is the existing public `IndigoW0lf/cozygardensim` repository, not a new upload. GitHub reported it as a non-fork, non-template repository at inspection.
+On November 4, 2026, Kai confirmed that Cozy Garden Simulator is personally owned. GitHub reports the existing public repository as a non-fork and non-template. Personal ownership is recorded as an owner attestation; the account name itself is not proof of ownership. No ownership transfer, company attribution change or history rewrite is part of preparation.
 
-The inspected main history contains 14 commits from February 17–19, 2024 (UTC), beginning with a Create React App initialization. Later commits add custom garden state, growth/magic logic and player progression. Their GitHub author associations resolve to `IndigoW0lf`; that is evidence of account attribution, not a legal ownership determination or proof of human-only authorship.
+The original history contains 14 commits from February 17–19, 2024 (UTC), starting with Create React App initialization and then adding garden state, growth/magic logic, breeding experiments and player progression. GitHub linked those commits to IndigoW0lf. The revival adds new, naturally scoped commits with current dates. Assistant collaboration is not represented as human-only historical work.
 
-Useful anchors:
+Anchors:
 
-- [Original scaffold initialization](https://github.com/IndigoW0lf/cozygardensim/commit/ebaa35f50ee69ba8a065c58d7abb20cc841320f3)
-- [Growth and magic work](https://github.com/IndigoW0lf/cozygardensim/commit/27af88f885e1d29f197234bcf94a32055300b4f3)
-- [Player progression integration](https://github.com/IndigoW0lf/cozygardensim/commit/7a746cdbafec8c1a6faf9e435e5319c76a0d7da5)
+- [Scaffold initialization](https://github.com/IndigoW0lf/cozygardensim/commit/ebaa35f50ee69ba8a065c58d7abb20cc841320f3)
+- [Growth/magic work](https://github.com/IndigoW0lf/cozygardensim/commit/27af88f885e1d29f197234bcf94a32055300b4f3)
+- [Original progression work](https://github.com/IndigoW0lf/cozygardensim/commit/7a746cdbafec8c1a6faf9e435e5319c76a0d7da5)
 
-The revival branch extends that ancestry. It does not rewrite original dates, authors, messages or commits. New preparation work must not be represented as historical activity or unpaid future tasks.
+Standard framework scaffolding is disclosed. The program's reviewers decide whether this custom implementation and preserved history satisfy their originality requirement.
 
-## License boundary
+## Current material
 
-The root MIT license already existed before this revival. Its grant applies to material the licensor has rights to license. It does not transfer ownership from an employer, customer, collaborator or company, nor override dependency/asset terms.
+| Material | Source and license boundary |
+| --- | --- |
+| Original application code | Existing root MIT grant, credited to Kai Indigo Wolf; original 2024 attribution retained |
+| Current SVG favicon | Source-authored during the preparation pass; included under the project MIT license |
+| Plant catalog | Common plant names retained from original records; earlier unverified descriptive/medical text removed |
+| Runtime packages | React, React DOM, React Redux, Redux, Nano ID and transitives; actual versions, MIT metadata and LICENSE texts recorded in THIRD_PARTY_NOTICES.txt |
+| Development tools | Versions/licenses recorded in DEPENDENCY_LICENSES.json; retain their own terms; not relicensed by the root grant |
+| Fonts, audio, other illustrations | None bundled in the current tree; system fonts only |
+| Test state | Fictional plants and deterministic fixtures; no real player records |
 
-The project uses React, React DOM, React Redux, Redux, Nano ID, Create React App/react-scripts, Testing Library, styled-components and web-vitals, as recorded in package.json/yarn.lock. Preserve applicable third-party notices during future builds and distribution. This audit did not validate every transitive license.
+The build copies LICENSE and THIRD_PARTY_NOTICES.txt into dist. `npm run audit:licenses` regenerates the inventory/notices; `-- --check` detects stale committed output. License metadata is not an assertion that every package is exclusively original project material.
 
-The public folder retains inherited CRA branding/scaffold assets. Their upstream provenance and terms have not been independently verified in this review. Replace them with documented original/appropriately licensed assets before a polished release. No claim is made that MIT relicenses third-party imagery.
+## Historical scaffold assets
 
-The plant catalog's authorship and content sources are not documented in the existing project. Treat it as unreviewed legacy data; do not import copyrighted descriptions or turn it into a medical reference.
+The removed `public/favicon.ico`, `public/logo192.png` and `public/logo512.png` exactly matched the corresponding files in the published `cra-template@1.2.0` tarball. Its package metadata declares MIT and includes a license. A copy is preserved at `docs/legacy-cra-template-LICENSE.txt`; upstream source is [Create React App's template package](https://github.com/facebook/create-react-app/tree/main/packages/cra-template).
 
-## Future asset ledger
+The old assets remain in preserved Git history. Removing them from the current app does not rewrite that history or claim rights to React trademarks. No trademark endorsement is implied.
 
-For each future illustration, font, sound or dataset, record its path, creator/source, acquisition date, exact license/permission, attribution requirement and any redistribution restrictions. Generated artwork should have its source/process recorded without claiming exclusivity that has not been established.
+## Future assets
+
+For each new illustration, font, sound or dataset, record its path, creator/source, version/date, exact license/permission, attribution requirement and redistribution limits. Generated art should have its process recorded without unsupported exclusivity claims. Do not import employer/client work or proprietary resources.
 
 ## Git identity
 
-The sampled old commits link to Kai's GitHub account. Before committing from a local environment, use an email actually linked to that account (including a GitHub-issued no-reply address if preferred). Never guess an address or rewrite old history for appearance.
+The sampled original and preparation commits link to the owner's GitHub account. New local commits must use a verified account-linked email or the owner's actual GitHub no-reply address. Do not guess an address, fabricate authorship or rewrite old history for appearance.

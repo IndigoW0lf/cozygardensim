@@ -1,7 +1,7 @@
 name: Prototype checks
 on:
   push:
-    branches: [main, revive/cozy-garden-baseline]
+    branches: [main]
   pull_request:
 permissions:
   contents: read
@@ -14,11 +14,22 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: '22'
-      - run: npm install --global yarn@1.22.22
-      - run: yarn install --frozen-lockfile
-      - run: yarn test --watchAll=false --runInBand
-        env:
-          CI: 'true'
-      - run: yarn build
-        env:
-          CI: 'true'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run audit:licenses -- --check
+      - run: npm audit --audit-level=low
+      - run: npm test
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+  secrets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Fetch branch, tag and exposed pull-request history
+        run: git fetch origin '+refs/heads/*:refs/remotes/origin/*' '+refs/tags/*:refs/tags/*' '+refs/pull/*/head:refs/remotes/origin/pull/*'
+      - name: Redacted history and working-tree scans
+        run: bash scripts/check-secrets.sh

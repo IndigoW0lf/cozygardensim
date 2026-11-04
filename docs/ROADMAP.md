@@ -8,16 +8,24 @@ A player can choose a seed, plant it in a small garden, understand what it needs
 
 Keep the first release browser-only: no login, cloud database, analytics, monetization, user uploads or generative AI.
 
-## Milestone 1 — Verify and modernize the foundation: 6–10 hours
+## Completed preparation — excluded from future hours
 
-- Run the baseline tests/build and manually verify the planting loop in a browser.
-- Migrate Create React App to a maintained build setup, with one lockfile and documented runtime versions. Keep the source and Git history; do not generate a replacement repository.
-- Make elapsed time an explicit input to a pure simulation function. Separate the clock from React effects.
-- Decide what a minute, a growth stage and a moon phase mean in the game.
-- Replace hard-coded demonstration moon changes with a reproducible small rule set.
-- Remove obsolete scaffold code after confirming it is unused.
+- Restore the React root/provider and remove invalid startup mounts.
+- Initialize seed timers and make the incomplete catalog honest.
+- Migrate CRA/Jest to Vite/Vitest with one npm lockfile.
+- Remove unused dependencies, scaffold branding and unverified catalog claims.
+- Add built-app browser checks, dependency/license inventory and secret-scan CI.
+- Document owner-confirmed personal ownership and preserve the original ancestry.
 
-**Acceptance:** clean install, passing tests/build, browser smoke check, no duplicate root or provider errors, and deterministic growth tests using a fake clock. Document dependency findings rather than hiding them behind a forced update.
+See AUDIT.md and the PR checks for verification results and limits. These changes are preparation already done, not future tasks.
+
+## Milestone 1 — Make simulation rules explicit: 2–4 hours
+
+- Inject elapsed time into a pure simulation function instead of tying growth to React effects.
+- Define a minute, stage duration and moon phase consistently.
+- Replace demonstration changes with a reproducible small rule set.
+
+**Acceptance:** deterministic fake-clock tests cover elapsed boundaries and multiple plants; visible growth agrees with the chosen rules. No UI effect timing should silently change game state semantics.
 
 ## Milestone 2 — Complete the planting-to-harvest loop: 12–18 hours
 
@@ -71,6 +79,6 @@ Multiplayer, accounts, cloud saves, marketplaces, telemetry and payments would r
 
 ## A realistic first development block
 
-Milestones 1 and 2 plus the lower end of persistence provide approximately **24–38 hours** of useful engineering work. Include implementation-specific tests and documentation in those estimates; do not count the same QA twice.
+Milestones 1, 2 and 3 provide approximately **20–32 hours** of useful engineering work. Include implementation-specific tests and documentation in those estimates; do not count the same QA twice.
 
 This block is appropriate only if Kai genuinely intends to build it. Do not expand scope merely to reach an hour threshold. Record actual time and preserve natural commits. Preparation already completed in this PR must not be described as future work.

@@ -1,8 +1,9 @@
+import { test, expect, vi } from 'vitest';
 import gardenReducer from './gardenReducer';
 import { addPlant, updateGrowthStage } from '../actions/gardenActions';
 import { getNextStageTime } from '../../functions/plantFunctions';
 
-jest.mock('nanoid', () => ({ nanoid: () => 'test-id' }));
+vi.mock('nanoid', () => ({ nanoid: () => 'test-id' }));
 
 test('a new plant spends its seed interval before advancing to sprouting', () => {
   const initial = gardenReducer(undefined, addPlant({

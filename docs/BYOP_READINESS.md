@@ -1,24 +1,28 @@
 # BYOP preparation status
 
-This is a factual preparation note against the supplied program requirements, not an acceptance determination.
+Assessment against the supplied requirements; no guarantee of acceptance.
 
 | Requirement | Evidence / status |
 | --- | --- |
-| Public existing GitHub repository | Already public; unchanged by this preparation |
-| Original implementation | Garden, timer, magic and progression code beyond CRA scaffolding |
-| Original history retained | Revival extends existing main; no new repository or rewritten history |
-| Accepted root license | Existing MIT; copyright formatting normalized |
-| README/run instructions | Rewritten with concrete commands and explicit limitations |
-| Useful development ahead | Roadmap contains a 24–38 hour first block, conditional on Kai actually wanting that work |
-| Active project | Last pre-revival implementation was February 2024; describe this honestly as a revived prototype |
-| Personal ownership / permitted resources | Not established by GitHub login or a copyright line; Kai must confirm no company/employer/client/university ownership or excluded resources |
-| Original provenance | CRA scaffold is disclosed; custom implementation is present. Program treatment of scaffold-based projects is for its reviewers |
-| Secrets / personal data | No apparent credentials in selected current source pattern checks; full history/ref/binary scan still outstanding. No real player-record flow identified |
-| Assets / dependencies | Full transitive-license and inherited-asset review outstanding |
-| Assistant collaboration | Small state transitions, simulation rules and observable browser behavior support human-directed, testable work |
-| Excluded AI work | Inspected game has no AI training/evaluation, model infrastructure or model-serving behavior |
-| Runtime | Initial frozen install, 3 tests and build passed on Node 22 in GitHub Actions; follow-up CI and manual browser verification remain required |
+| Public existing repository | Already public; same repository retained |
+| Personal ownership | Kai explicitly confirmed personal ownership on 2026-11-04; recorded as an attestation |
+| Original implementation | Custom garden/growth/magic/progression code beyond disclosed CRA scaffold; reviewer decision on originality remains |
+| Original history | All original ancestry retained; no squash, replacement repository or fabricated dates |
+| Root license | Existing MIT retained; runtime notices and full dependency license inventory added |
+| Run instructions | README documents Node/npm, clean installation, Vite, tests, build and browser checks |
+| Development ahead | Roadmap identifies roughly 20–32 hours for simulation rules, a complete game loop and local persistence; preparation work is excluded |
+| Genuine activity | Last original work was February 2024; accurately described as a revived prototype with new preparation commits |
+| Secrets/history | Gitleaks 8.30.1 found no secrets in all 16 initially fetched reachable commits; CI repeats history and current-tree scans on new work; limitations in AUDIT.md |
+| Real personal/regulated data | None required or identified in inspected code/history paths; test data is fictional; no accounts, analytics, database or uploads |
+| Assets | Inherited binaries matched to upstream MIT template; removed from current app; current icon is source-authored |
+| Dependency licenses | Runtime MIT; locked development licenses are MIT, Apache-2.0, BSD-2-Clause, BSD-3-Clause, ISC and MPL-2.0; no missing/unlisted metadata identified |
+| Dependencies | npm audit found zero known vulnerabilities at preparation time; CI repeats the check |
+| Runtime verification | Four Vitest checks and Vite build pass locally; built-app desktop/mobile Chromium checks run in PR CI |
+| Excluded AI work | No AI model development/evaluation/training, inference service or compute infrastructure in the app |
+| Assistant collaboration | Small simulation/state transitions and observable browser behavior support human-directed, testable engineering |
 
-Read [AUDIT.md](AUDIT.md) for scope. Code fixes in the preparation PR are already proposed work; do not include them again in an application as unfinished tasks.
+Use the actual current [PR checks](https://github.com/IndigoW0lf/cozygardensim/pull/1) to verify browser and CI status before presenting this as technically prepared. A green build does not establish acceptance, legal ownership or the absence of all undiscoverable secrets.
 
-The roadmap does not establish intent, ownership or acceptance. A personally hosted repository can still contain company-owned IP. Do not change ownership labels or remove relevant provenance to make the project appear eligible.
+No employer/client/university implementation or data was identified in the inspected source. Repository evidence cannot independently prove every historical resource or agreement. Do not describe owner attestation as an external certification.
+
+The roadmap is a plan for the owner's genuine intended work, not a requirement to implement every suggestion or a promise of billable hours. No application is submitted by this preparation work.

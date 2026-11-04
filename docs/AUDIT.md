@@ -1,49 +1,57 @@
-# Prototype revival audit — 2026-11-04
+# Preparation audit — 2026-11-04
 
-## Scope and limits
+## Evidence boundary
 
-Read-only inspection began at main commit `7a746cdbafec8c1a6faf9e435e5319c76a0d7da5`. Reviewed repository metadata, the complete recursive current tree, README/LICENSE/package manifest, the current application JavaScript, the 14 returned default-branch commit summaries, branch inventory, issue inventory, and the latest implementation commit diff. Only main was listed; no issues were returned at inspection time.
+The original main head was `7a746cdbafec8c1a6faf9e435e5319c76a0d7da5`. The first preparation head was `0452c9dbbb24547283d66f42a9d0976255c175e2`. This pass uses a full clone and extends the same PR branch; it does not rewrite history.
 
-This is a **limited source and history review**, not a full secret, dependency, asset-rights or security audit. Historical blobs, all refs/tags, binary assets and the dependency graph have not been comprehensively scanned. Pattern checks on the selected current source files found no obvious provider-token/private-key pattern; that does not establish a secret-free repository.
+Kai confirmed personal ownership on November 4, 2026. That is an owner attestation, not an independent legal determination. No employer/client/university implementation or records were identified in the inspected source. The repository cannot independently prove which resources were used historically.
 
-The execution workspace became unavailable during preparation, so no local install, browser session or vulnerability scan completed. GitHub Actions subsequently installed the frozen Yarn lockfile, passed both regression suites (3 initial tests), and built production output on Node 22 for commit 0dd04380d9c83755ac58ca38ce6665a0efe0b8a2. See [run 41915177155](https://github.com/IndigoW0lf/cozygardensim/actions/runs/41915177155). A follow-up adds simulated-minute UI coverage, explicit timer cleanup and current v6 CI actions; verify its own run before merge. Real-browser QA and a dependency/security audit remain outstanding.
+## Checks completed locally
 
-## Findings and preparation changes
+| Check | Evidence / result |
+| --- | --- |
+| Ref inventory | Fetched all advertised branches/tags plus exposed PR heads; main, revival branch and PR #1 were present; no advertised tags |
+| Reachable history | 16 unique commits before this follow-up, including the 14 original commits and two preparation commits |
+| Secret scan | Checksum-verified Gitleaks 8.30.1, default rules, `git --redact=100 --log-opts='--all --full-history'`; scanned about 1.20 MB, no findings |
+| Historical paths | 56 unique paths; no environment files, database dumps, compiled Python configs or similar sensitive path names found |
+| Historical binary assets | Only the inherited favicon and two React PNG logos; byte-for-byte matches to `cra-template@1.2.0` package assets |
+| Asset source | Upstream template package declares MIT and includes its license; archived license retained in `legacy-cra-template-LICENSE.txt`; assets removed from current tree |
+| Dependency advisories | `npm audit` returned zero known vulnerabilities at preparation time; advisory state can change |
+| License inventory | All lockfile package records declare a license; runtime dependencies are MIT. Development/optional-platform dependencies use MIT, Apache-2.0, BSD-2-Clause, BSD-3-Clause, ISC or MPL-2.0 |
+| Unit/integration checks | Two Vitest suites, four tests passed after migration; planting and simulated stage transitions covered |
+| Production build | Vite build passed; application license and runtime dependency notices copied to dist |
+| Reproducible installation | `npm ci --ignore-scripts` followed by license verification, tests and build |
+| Browser tests | Desktop/mobile Chromium scenarios committed for the built application; actual CI results must be checked on the PR |
 
-| Finding at the inspected commit | Impact | Preparation response |
-| --- | --- | --- |
-| Entry point used createRoot without Redux Provider and then called removed ReactDOM.render through react-dom/client | Broken boot/provider access | Use one root with Provider inside StrictMode |
-| App imported/rendered an empty Sidebar module and rendered Plant with no plant prop | Invalid component / property access | Remove those invalid mounts |
-| Store read state.herbalPlants, but root state had only garden and player | Missing-state crash | Render a read-only catalog from the existing data module |
-| Shop expected cost and requiredLevel fields absent from the catalog | No valid purchase contract | Mark purchasing as planned; do not invent an economy during preparation |
-| New garden plants had no growth timer | Seed interval could be skipped | Initialize seed duration explicitly and add a regression test |
-| Full-moon modifier subtracted 0.5 while claiming twice-fast growth | Slower rather than faster timer | Subtract 2; add growth-modifier regression coverage |
-| Demonstration updated fullMoon without updating the displayed phase | State/display disagreement | Update the phase alongside the demonstration flag |
-| Header occupied a full viewport and retained scaffold presentation | Prototype controls pushed down the page | Compact semantic header and basic keyboard focus styling |
-| README described unfinished mechanics as features | Misleading project assessment | Separate implemented groundwork, missing behavior and the longer-term plan |
-| Existing MIT copyright line contained brackets | Unfinished license formatting | Normalize the line while retaining the 2024 attribution and MIT terms |
-| Plain .env files were not excluded | Avoidable future credential risk | Ignore local environment files; this does not remove any historical file |
+Local browser binaries could not be installed: downloads returned invalid/truncated archives in this workspace. This is not an app test failure and is not presented as a passing local browser test. CI performs the actual Chromium installation and tests. See [PR #1](https://github.com/IndigoW0lf/cozygardensim/pull/1) for the browser result on the current head.
 
-## Remaining engineering findings
+## Findings repaired
 
-- The successful CI run reported legacy peer-dependency warnings, an undeclared Babel-plugin dependency and stale Browserslist data. These were not suppressed. A test-run open-handle warning prompted fake-timer cleanup and an additional integrated growth check.
-- Create React App is deprecated. Migration is planned, not completed. See React's [deprecation notice](https://react.dev/blog/2025/02/14/sunsetting-create-react-app).
-- Breeding is split between a thunk action and reducer handling; the current store does not install thunk middleware. No breeding interface is exposed in the revived screen.
-- Growth relies on setInterval and restarts effects as state changes. Background tabs and time away need explicit simulation rules.
-- The demonstration checks for Moonflower, while the current add-plant action creates Sunflower; the catalog does not yet supply a coherent magical species model.
-- Harvest only marks a plant; it is not connected to reward accounting or one-time harvesting rules.
-- The Redux reducers exist without persistence, save migrations or recovery.
-- The legacy catalog contains unverified medicinal claims and no game prices/unlock thresholds. Those descriptions are not displayed by the revived catalog and should be replaced with fictional game content before expanding it.
-- No application accounts, databases, analytics, uploads, external API clients or model calls were found in the inspected current application code. Browser hosting still involves ordinary web requests; dependency supply-chain behavior was not audited.
-- No production deployment configuration was found in the inspected tree. Build output is static; no live-playability claim has been verified.
-- The old React logo/favicon assets and all dependencies need their own provenance/license accounting. Do not treat the MIT header as relicensing them.
+- A single React root now wraps App in the Redux provider. The invalid second render call and unsupported standalone Plant/empty Sidebar mounts were removed.
+- Garden seeds have unique specimen IDs and initialized stage timers.
+- The catalog reads the actual data module and does not pretend purchases work without prices/state/rules.
+- Moon flag/display and the demonstration growth modifier agree.
+- CRA/Jest and the old Yarn lockfile were replaced in place with Vite/Vitest and package-lock.json. React stays on its compatible 18.x line; no unnecessary runtime major migration.
+- Unused web-vitals/styled-components/testing dependencies and the empty Sidebar were removed.
+- The catalog retains plant names only; unverified health/care metadata is absent from the current source.
+- React branding/scaffold assets were replaced with a source-authored SVG favicon. No external image, font, sound or network asset is needed by the current app.
+- Heading order and section labels are coherent; keyboard focus remains visible.
+- Root MIT terms and 2024 attribution remain intact.
 
-## Verification to complete
+## Data flow
 
-1. Inspect the PR CI result and repair failures without relaxing checks.
-2. Complete the README's manual play-test steps.
-3. Review installed dependency advisories and toolchain migration.
-4. Run a redacting secret scanner across all intended submission refs/history, including binary/compiled files; review findings without exposing values.
-5. Confirm ownership/resources and the actual next development block with Kai.
+Player input → in-memory Redux garden/player state → local React UI. Random specimen identifiers and demonstration phases are generated in the browser. Refresh currently resets the session. The inspected app has no accounts, database, cloud storage, telemetry, uploads, external API calls or AI/model integration. Vite/Playwright/npm/Gitleaks are development tools, not application data destinations.
 
-No employer/client code or private user records should be introduced for tests. Use generated game state.
+The browser checks reject page errors and unexpected network origins during the tested scenarios. They do not establish every possible environmental behavior, browser-extension behavior or future code path.
+
+## Limits of the history and dependency review
+
+Gitleaks is a pattern-based scan, not proof that no secret has ever existed. The scan covers reachable fetched history, not remote deleted/unreachable objects, hidden provider refs, inaccessible branches, ignored local files, logs, hosting configuration or deployed environments. Binary data is not comprehensively decoded; the three historical image assets were separately matched to their upstream package. No credentials were tested against a service and none are reproduced in this report.
+
+License metadata plus runtime LICENSE files were reviewed and recorded, not every dependency's complete source. Platform-optional dependency records are included even when not installed locally. No currently locked license is unlisted against the supplied accepted-license list. This does not turn the dependency review into program approval.
+
+The original repository used standard CRA scaffolding, disclosed in provenance. Custom implementation exists beyond it; the program's reviewers decide whether that history meets their originality requirement.
+
+## Still-real development work
+
+Elapsed-time simulation, the purchase/harvest/reward loop, save/recovery, breeding invariants, original visual scenes and broader accessibility testing remain. None is represented as complete. Preparation already performed is excluded from the future hour estimate. See ROADMAP.md.

@@ -1,3 +1,4 @@
+import { test, expect, vi, beforeEach, afterEach } from 'vitest';
 import React from 'react';
 import { render, screen, fireEvent, cleanup, act } from '@testing-library/react';
 import { Provider } from 'react-redux';
@@ -5,13 +6,13 @@ import { createStore } from 'redux';
 import App from './App';
 import rootReducer from './store/reducers';
 
-jest.mock('nanoid', () => ({ nanoid: () => 'test-sunflower' }));
+vi.mock('nanoid', () => ({ nanoid: () => 'test-sunflower' }));
 
-beforeEach(() => jest.useFakeTimers());
+beforeEach(() => vi.useFakeTimers());
 afterEach(() => {
   cleanup();
-  jest.clearAllTimers();
-  jest.useRealTimers();
+  vi.clearAllTimers();
+  vi.useRealTimers();
 });
 
 function renderGarden() {
@@ -37,7 +38,7 @@ test('the displayed plant advances after five simulated minute ticks', () => {
   fireEvent.click(screen.getByRole('button', { name: 'Plant a sunflower' }));
   expect(screen.getByText('Stage: seed')).toBeTruthy();
   for (let tick = 0; tick < 5; tick += 1) {
-    act(() => { jest.advanceTimersByTime(60000); });
+    act(() => { vi.advanceTimersByTime(60000); });
   }
   expect(screen.getByText('Stage: sprouting')).toBeTruthy();
 });
