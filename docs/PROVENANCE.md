@@ -20,10 +20,11 @@ Standard framework scaffolding is disclosed. The program's reviewers decide whet
 | --- | --- |
 | Original application code | Existing root MIT grant, credited to Kai Indigo Wolf; original 2024 attribution retained |
 | Current SVG favicon | Source-authored during the preparation pass; included under the project MIT license |
-| Plant catalog | Common plant names retained from original records; earlier unverified descriptive/medical text removed |
+| Plant catalog | Three common flower names and original illustrative game rules; earlier unverified descriptive/medical text removed. The unused 31-name legacy file remains as source material, not the active shop. |
 | Runtime packages | React, React DOM, React Redux, Redux, Nano ID and transitives; actual versions, MIT metadata and LICENSE texts recorded in THIRD_PARTY_NOTICES.txt |
 | Development tools | Versions/licenses recorded in DEPENDENCY_LICENSES.json; retain their own terms; not relicensed by the root grant |
-| Fonts, audio, other illustrations | None bundled in the current tree; system fonts only |
+| Garden illustrations | 12 transparent PNGs and one opaque cottage backdrop generated with ChatGPT image generation on 2026-11-05, at the owner’s request. Root MIT terms apply to project material to the extent rights are held; no separate art reservation or claim of exclusive copyright/human painting. Prompts and reference relationships: [generation record](art/generation-record.json). |
+| Fonts and audio | System fonts only; no font or audio files bundled |
 | Test state | Fictional plants and deterministic fixtures; no real player records |
 
 The build copies LICENSE and THIRD_PARTY_NOTICES.txt into dist. `npm run audit:licenses` regenerates the inventory/notices; `-- --check` detects stale committed output. License metadata is not an assertion that every package is exclusively original project material.
@@ -33,6 +34,12 @@ The build copies LICENSE and THIRD_PARTY_NOTICES.txt into dist. `npm run audit:l
 The removed `public/favicon.ico`, `public/logo192.png` and `public/logo512.png` exactly matched the corresponding files in the published `cra-template@1.2.0` tarball. Its package metadata declares MIT and includes a license. A copy is preserved at `docs/legacy-cra-template-LICENSE.txt`; upstream source is [Create React App's template package](https://github.com/facebook/create-react-app/tree/main/packages/cra-template).
 
 The old assets remain in preserved Git history. Removing them from the current app does not rewrite that history or claim rights to React trademarks. No trademark endorsement is implied.
+
+## Generated-art process
+
+The sunflower bloom established the soft gouache/watercolor appearance. The other blooms and wooden bed used it as a style reference; each species’ leafy and bud stages used its own bloom. Shared seed/sprout and the cottage backdrop used the sunflower reference. No third-party artist/game image or named-artist style was supplied. Outputs were copied unchanged into `public/assets/garden/`; all 12 sprite files are 1254 × 1254 RGBA with transparent alpha, and the backdrop is 1536 × 1024 RGB. Generated imagery is not evidence of botanical accuracy. The game’s model-free runtime does not call an image or AI service.
+
+[Desktop](screenshots/garden-desktop.png) and [mobile](screenshots/garden-mobile.png) screenshots show the actual built interface, using fictional state reached through normal controls and accelerated test time. They are captured UI evidence, not generated mockups.
 
 ## Future assets
 
