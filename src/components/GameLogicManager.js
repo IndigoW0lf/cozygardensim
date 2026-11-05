@@ -1,39 +1,25 @@
 import { useEffect } from 'react';
 import { useStore } from 'react-redux';
-import { updateGrowthStage, updateMagicConditions } from '../store/actions/gardenActions';
+import { advanceGarden } from '../store/actions/gardenActions';
 
-const GameLogicManager = () => {
+export default function GameLogicManager() {
   const store = useStore();
-
   useEffect(() => {
-    // Read current state at each tick. Subscribing this interval to plants or
-    // moon changes would restart it and delay growth whenever they change.
-    const growthInterval = setInterval(() => {
-      const { plants, magicConditions } = store.getState().garden;
-      plants.forEach((plant) => {
-        const modifier = magicConditions.fullMoon && plant.type === 'Moonflower' ? 2 : 1;
-        if (plant.timeUntilNextStage > 0) {
-          store.dispatch(updateGrowthStage(plant.id, { decrement: true, modifier }));
-        } else {
-          store.dispatch(updateGrowthStage(plant.id, { nextStage: true }));
-        }
-      });
-    }, 60000);
-    return () => clearInterval(growthInterval);
+    let last = performance.now();
+    const resetClock = () => { last = performance.now(); };
+    const interval = setInterval(() => {
+      const now = performance.now();
+      const elapsedMs = Math.min(1000, Math.max(0, Math.round(now - last)));
+      last = now;
+      // No offline/catch-up growth yet. A hidden tab rests rather than making
+      // an unreliable promise about background timer delivery.
+      if (!document.hidden && elapsedMs > 0) store.dispatch(advanceGarden(elapsedMs));
+    }, 1000);
+    document.addEventListener('visibilitychange', resetClock);
+    return () => {
+      clearInterval(interval);
+      document.removeEventListener('visibilitychange', resetClock);
+    };
   }, [store]);
-
-  useEffect(() => {
-    const magicInterval = setInterval(() => {
-      const fullMoon = Math.random() > 0.5;
-      store.dispatch(updateMagicConditions({
-        fullMoon,
-        currentMoonPhase: fullMoon ? 'full moon' : 'new moon',
-      }));
-    }, 100000);
-    return () => clearInterval(magicInterval);
-  }, [store]);
-
   return null;
-};
-
-export default GameLogicManager;
+}

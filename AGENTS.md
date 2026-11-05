@@ -7,8 +7,8 @@ This is Kai's personally owned, early browser-game prototype. Read the current R
 - React 18 + Redux, Vite 8, Vitest 5, npm/package-lock.json. Node 22.12+.
 - JSX lives in .jsx files; pure logic/state helpers live in .js files.
 - App state is local, in memory. No accounts, analytics, database, cloud API or AI integration.
-- Keep the stable timer bridge from restarting when moon/plant state changes. A pure elapsed-time simulation remains future work.
-- Distinguish catalog species from individual plant specimens when extending the model. Purchases/harvest rewards and persistence are not implemented yet.
+- Keep the stable timer bridge from restarting when moon/plant state changes. The pure simulation splits updates at moon boundaries; preserve partition-independent growth.
+- Distinguish catalog species from individual plant specimens when extending the model. Planting/harvesting are atomic root transactions; reject occupied beds, invalid IDs, insufficient funds and repeated harvests. Persistence and breeding remain future work.
 - Use only fictional/test game data and documented assets. Never introduce employer/client code, credentials or real user records.
 
 ## Verification

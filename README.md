@@ -12,23 +12,15 @@ No accounts, payments, advertising, analytics or AI generation are planned for t
 
 ## What works now
 
-- Plant independent sunflowers with unique IDs and initialized growth timers.
-- See their growth stages update while the page stays open.
-- View the demonstration moon state and a names-only plant catalog.
-- Run React/Redux with Vite, Vitest and a reproducible npm lockfile.
-- Run regression tests and desktop/mobile Chromium checks against the built app.
+- Choose Sunflower, Calendula or Moonflower seeds and plant into six beds.
+- Pay once when planting; reject occupied beds, invalid IDs or unaffordable seeds.
+- Watch five growth stages, then harvest once for coins and XP. Harvesting frees the bed for another seed.
+- A pure elapsed-time simulation handles moon boundaries; Moonflower grows 50% faster under a full moon.
+- Pause/resume the garden. Hidden tabs rest; there is no offline catch-up or saved session yet.
+- Responsive, keyboard-operable controls, growth progress, coin/XP/harvest counts and action feedback.
+- Illustration slots with a bundled asset manifest. **Art is in progress**; neutral placeholders are not the finished visual direction. See [the art brief](docs/art/ASSET_BRIEF.md).
 
-| Area | Existing groundwork | Still needed |
-| --- | --- | --- |
-| Garden | Add and display individual plants | Species selection, beds/slots, tending |
-| Growth | One-minute ticks and stage transitions | Explicit elapsed-time rules, pause and offline policy |
-| Magic | Periodically changing demonstration phase | A coherent rule set and responsive species |
-| Catalog | 31 legacy plant names | Fictional traits, prices and unlock rules |
-| Economy | Coin/XP reducers | Connected purchase/harvest/reward loop |
-| Breeding | Experimental action/reducer code | Validated parents/traits, one implementation and a UI |
-| Saving | Session memory only | Versioned local saves, recovery, export/reset |
-
-The catalog makes no medical or real-world plant-care claims. Earlier unverified descriptions were removed during preparation. Future magical effects should be explicitly fictional.
+This is a first playable slice, not a finished game. Planting prices, short growth times and moon effects are illustrative game rules, not botanical guidance. Saves/recovery, tending rules, breeding, a larger collection and real-device/assistive-technology review remain.
 
 ## Run locally
 
@@ -66,15 +58,16 @@ Playwright tests the actual built app at desktop and mobile sizes: keyboard acti
 
 GitHub Actions runs installation, license checks, dependency advisories, unit tests, production build, browser checks and redacted secret scans. See the [PR checks](https://github.com/IndigoW0lf/cozygardensim/pull/1) for the latest run and [audit record](docs/AUDIT.md) for scope.
 
-## Play-test the baseline
+## Five-minute reviewer walkthrough
 
-1. Open a fresh session: the garden should show an empty state.
-2. Press Tab, then Enter on **Plant a sunflower**. A seed-stage plant should appear.
-3. Add a second plant; both should remain independent.
-4. Leave the page open. A fresh seed takes five one-minute ticks to reach sprouting.
-5. Refresh: the garden currently resets. Persistence is future work.
+1. Start with 100 coins. Select a packet, then an empty bed. Selection alone costs nothing.
+2. Plant Sunflower in bed 1: the balance becomes 90. Planting another specimen uses another bed.
+3. Let the visible garden run for about one minute. The Sunflower becomes harvestable.
+4. Harvest it: the balance becomes 106 (if nothing else was planted), 4 XP is awarded and the same bed can be planted again. A second harvest cannot pay again.
+5. Try Calendula and Moonflower. The moon changes every 90 seconds of active garden time; Moonflower's full-moon rate is higher.
+6. Pause/resume and try planting with too few coins. Refreshing deliberately resets the visit; saves are not implemented.
 
-The catalog does not offer purchases yet. The original shop expected prices, level requirements and a Redux catalog slice that did not exist. Purchase rules belong with the complete harvest-and-reward loop.
+[Review-build notes](docs/REVIEW_BUILD.md) record scope, art status and checks. Use fictional game state only.
 
 ## Code map
 
@@ -83,8 +76,8 @@ index.html                    Vite entry document
 src/index.jsx                 Single React root and Redux provider
 src/App.jsx                   Prototype screen composition
 src/components/               Garden, plant display, catalog and timer driver
-src/data/herbalPlants.js      Names-only legacy plant catalog
-src/functions/                Stage timing and experimental magic helpers
+src/game/                     Species definitions, growth rules and pure simulation
+src/art/                      Replaceable raster-art manifest
 src/store/                    Garden/player events and state transitions
 src/**/*.test.*               Vitest regression suites
 tests/browser/                Built-app Playwright checks
@@ -97,13 +90,13 @@ docs/BYOP_READINESS.md          Submission preparation facts
 
 ## Longer-term plan
 
-1. **Simulation foundation:** a controllable clock and clear growth/moon rules.
-2. **One complete loop:** seed selection, beds, tending, harvesting, rewards and progression.
+1. **Local saves and recovery:** validated, versioned data, import/export and a safe absence policy.
+2. **Tending and discovery:** care choices that change the game, followed by validated breeding.
 3. **A garden worth returning to:** local saves, recovery and a forgiving absence policy.
 4. **Magical discovery:** distinct species, readable effects and deterministic breeding rules.
 5. **Comfort and polish:** accessible controls, responsive scenes, documented art, optional audio and performance checks.
 
-The [detailed roadmap](docs/ROADMAP.md) defines a roughly **20–32 hour** first block of remaining work. Completed preparation is excluded from that estimate. Hours are planning ranges; Kai should select work she actually wants to build.
+The [detailed roadmap](docs/ROADMAP.md) defines a roughly **20–34 hour** next block of remaining work. Completed preparation is excluded from that estimate. Hours are planning ranges; Kai should select work she actually wants to build.
 
 ## Getting ready to contribute
 

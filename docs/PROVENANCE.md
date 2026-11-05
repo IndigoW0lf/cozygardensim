@@ -20,7 +20,7 @@ Standard framework scaffolding is disclosed. The program's reviewers decide whet
 | --- | --- |
 | Original application code | Existing root MIT grant, credited to Kai Indigo Wolf; original 2024 attribution retained |
 | Current SVG favicon | Source-authored during the preparation pass; included under the project MIT license |
-| Plant catalog | Common plant names retained from original records; earlier unverified descriptive/medical text removed |
+| Plant catalog | Three common flower names and original illustrative game rules; earlier unverified descriptive/medical text removed. The unused 31-name legacy file remains as source material, not the active shop. |
 | Runtime packages | React, React DOM, React Redux, Redux, Nano ID and transitives; actual versions, MIT metadata and LICENSE texts recorded in THIRD_PARTY_NOTICES.txt |
 | Development tools | Versions/licenses recorded in DEPENDENCY_LICENSES.json; retain their own terms; not relicensed by the root grant |
 | Fonts, audio, other illustrations | None bundled in the current tree; system fonts only |

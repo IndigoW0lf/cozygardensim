@@ -1,84 +1,41 @@
 # Development roadmap
 
-This roadmap describes useful future work for an early prototype. It is not a record of completed work, booked hours, paid-program approval, or a commitment to every idea. Kai should select the milestones she actually wants to build.
+This is genuine proposed work for the existing personal project, with estimates rather than guaranteed hours or program approval. Completed features must not be counted as future tasks.
 
-## First playable direction
+## Implemented and excluded from remaining estimates
 
-A player can choose a seed, plant it in a small garden, understand what it needs, harvest it, and use the reward for the next choice. The experience should feel calm and forgiving. Start with a few well-defined fictional species rather than a large, unbalanced catalog.
+- Original history preserved; runtime/tooling, dependency/license and secret-scan preparation complete.
+- Three seed types, six beds, atomic purchases and one-time harvest payouts, XP/levels.
+- Pure elapsed-time simulation with deterministic moon boundaries and pause/visible-tab behavior.
+- Responsive keyboard-operable first loop and meaningful regression/browser coverage.
+- Raster-art slots and an explicit art brief. The illustrated set is in progress; the neutral slots are not final art.
 
-Keep the first release browser-only: no login, cloud database, analytics, monetization, user uploads or generative AI.
+## 1. Local saves and recovery — 6–10 hours
 
-## Completed preparation — excluded from future hours
+Add a versioned save schema, strict runtime validation, migration, import preview, export/reset and storage-failure recovery. Preserve the current garden when an import is malformed. Design a capped, forgiving absence policy explicitly instead of relying on background timers.
 
-- Restore the React root/provider and remove invalid startup mounts.
-- Initialize seed timers and make the incomplete catalog honest.
-- Migrate CRA/Jest to Vite/Vitest with one npm lockfile.
-- Remove unused dependencies, scaffold branding and unverified catalog claims.
-- Add built-app browser checks, dependency/license inventory and secret-scan CI.
-- Document owner-confirmed personal ownership and preserve the original ancestry.
+**Acceptance:** refresh can preserve a garden; corrupt/unsupported saves do not overwrite recoverable data; failed imports leave the current visit intact; version, timestamp and quota cases are tested. No real personal information or account is required.
 
-See AUDIT.md and the PR checks for verification results and limits. These changes are preparation already done, not future tasks.
+## 2. Meaningful tending rules — 6–10 hours
 
-## Milestone 1 — Make simulation rules explicit: 2–4 hours
+Add a small care/resource system where watering or another deliberate action changes a clear growth or yield rule. Explain needs without punishment for missed days. Define resource regeneration, constraints and feedback; balance the existing three species through repeatable playtests before expanding the catalog.
 
-- Inject elapsed time into a pure simulation function instead of tying growth to React effects.
-- Define a minute, stage duration and moon phase consistently.
-- Replace demonstration changes with a reproducible small rule set.
+**Acceptance:** a player can predict why a care action matters; resources and rewards obey their invariants; repeated/invalid care cannot duplicate rewards; accessible status updates match the actual rules. Include tests and observed balancing notes, not just decorative controls.
 
-**Acceptance:** deterministic fake-clock tests cover elapsed boundaries and multiple plants; visible growth agrees with the chosen rules. No UI effect timing should silently change game state semantics.
+## 3. Magical discovery and validated breeding — 8–14 hours
 
-## Milestone 2 — Complete the planting-to-harvest loop: 12–18 hours
+Define valid parent pairs and bounded inherited traits, reproducible randomness, offspring identity and costs. Add parent selection, a clear preview of possible outcomes and saved-result compatibility. The old unvalidated thunk/reducer experiments were retired; this is a coherent new rule system, not a claim they were complete.
 
-- Define typed or runtime-validated species and specimen records, distinguishing a catalog species from an individual plant.
-- Start with 3–5 game species with explicit seed costs, stage durations and harvest yields.
-- Add seed selection and a small bed/slot model.
-- Make purchase and harvest atomic state transitions; reject insufficient funds, invalid selections and repeated harvesting.
-- Connect earnings and XP to visible progress. Keep the first balancing pass small.
-- Add tending feedback only where it changes a clear rule.
+**Acceptance:** missing/ineligible parents never crash or spend resources; identical seeds/parents reproduce outcomes; offspring obey trait limits; UI explanations match the rules; duplicate actions cannot clone paid rewards. Use a few species with distinct choices before adding more.
 
-**Acceptance:** a player can buy, plant, grow and harvest a plant, then afford a meaningful next choice. Tests cover duplicate harvesting, invalid IDs, insufficient funds, unique specimen IDs and nonnegative balances.
+## Review and polish track — 4–6 hours, after illustrated assets
 
-## Milestone 3 — Local saves and recovery: 6–10 hours
-
-- Add a versioned save format with validation and migrations.
-- Save in browser storage; surface storage failures.
-- Provide export/import and an explicit reset flow.
-- Choose a capped, forgiving offline-growth policy rather than relying on background browser timers.
-- Recover safely from malformed, old or partially written saves.
-
-**Acceptance:** refresh preserves a garden; invalid imports do not destroy the current garden; tests cover migrations, time boundaries, clock changes and storage errors. No network account is required.
-
-## Milestone 4 — Comfortable controls and a small garden scene: 6–10 hours
-
-- Arrange plants in an understandable, responsive garden rather than an unstructured list.
-- Make every action available by keyboard, with clear focus and status announcements.
-- Respect reduced motion and avoid relying on color alone.
-- Show needs, timers and available actions without excessive clicking.
-- Test narrow screens, zoom and a realistic longer garden session.
-
-**Acceptance:** the whole core loop works with keyboard-only input and on a small viewport; status changes are understandable without animation. Verify actual browser behavior.
-
-## Milestone 5 — Magical discovery and breeding: 8–14 hours
-
-- Design a few explicitly fictional effects with predictable interactions.
-- Make a moon-sensitive species respond to the displayed moon state.
-- Replace competing breeding implementations with one validated rule system.
-- Inject randomness or use a seed so reproduction bugs can be reproduced.
-- Add parent selection, trait previews and understandable outcomes.
-
-**Acceptance:** invalid/missing parents do not crash; inherited traits obey defined bounds; the same seed and parents reproduce a result. Only add species when they create a new decision.
+Review keyboard order/focus, a screen reader, reduced motion, real touch devices, narrow/landscape layouts and long sessions. Integrate approved art with an asset ledger; make stage transitions clear without relying on color or motion. Review actual player observations and fix reproducible issues. Automated Chromium checks do not complete this track.
 
 ## Later possibilities — unestimated
 
-- Original illustrated plants and garden environments, with a documented asset ledger.
-- Optional ambient audio with mute/volume and user-initiated playback.
-- Seasonal collections and decorative rewards.
-- A downloadable/offline edition if actual use justifies it.
+A larger species collection, a spatial garden scene, seasonal decorations, optional original ambient audio with mute/volume, and an offline edition if use warrants it. Accounts, multiplayer, cloud saves, telemetry and payments are separate product/data-flow decisions.
 
-Multiplayer, accounts, cloud saves, marketplaces, telemetry and payments would require a new privacy and ownership review. They are not prerequisites for a satisfying small game.
+## Next work block
 
-## A realistic first development block
-
-Milestones 1, 2 and 3 provide approximately **20–32 hours** of useful engineering work. Include implementation-specific tests and documentation in those estimates; do not count the same QA twice.
-
-This block is appropriate only if Kai genuinely intends to build it. Do not expand scope merely to reach an hour threshold. Record actual time and preserve natural commits. Preparation already completed during the revival must not be described as future work.
+Saves, tending and breeding total roughly **20–34 hours**; review/polish is a separate track. Tests and documentation for each feature are included in its estimate. Select work Kai actually wants to build. Do not add work to meet a threshold, inflate history or count completed preparation/the first playable loop again.

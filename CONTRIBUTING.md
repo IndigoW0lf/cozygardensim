@@ -43,4 +43,4 @@ Preserve the original history. Use a normal merge commit for reviewed branches; 
 
 Use fictional plants and fixture data. The current game requires no real player information, accounts, external APIs or AI services. Do not add these merely to increase scope. Keep imported art, fonts, sounds and datasets documented in the provenance ledger before distributing them.
 
-The first substantial work is a pure elapsed-time simulation, a complete seed-to-harvest/reward loop, and versioned local saves. Startup repairs, tooling migration, audits and the current tests are completed preparation, not tasks to count again.
+The first playable loop and pure simulation now exist. Further work includes versioned local saves/recovery, a meaningful tending system and validated breeding. Startup repairs, tooling migration, audits and the current tests are completed preparation, not tasks to count again.

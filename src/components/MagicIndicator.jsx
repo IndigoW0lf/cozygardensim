@@ -1,21 +1,11 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-const MagicIndicator = ({ magicConditions }) => {
-  return (
-    <section aria-labelledby="magic-title">
-      <h2 id="magic-title">Magic conditions</h2>
-      <p>Moon Phase: {magicConditions.currentMoonPhase}</p>
-      <p>
-        Supernatural Events:{' '}
-        {magicConditions.recentSupernaturalEvents ? 'Yes' : 'No'}
-      </p>
-    </section>
-  );
-};
-
-const mapStateToProps = (state) => ({
-  magicConditions: state.garden.magicConditions,
-});
-
-export default connect(mapStateToProps)(MagicIndicator);
+export default function MagicIndicator() {
+  const phase = useSelector(state => state.garden.magicConditions.currentMoonPhase);
+  const paused = useSelector(state => state.garden.paused);
+  return <div className="moon-note"><span className="moon-symbol" aria-hidden="true">{phase === 'full moon' ? '○' : '☾'}</span>
+    <div><h2>{paused ? 'A moment of rest' : 'A gentle growing day'}</h2>
+      <p>{phase === 'full moon' ? 'Full moon · a little magic for Moonflower' : 'New moon · quiet roots, fresh beginnings'}</p></div>
+  </div>;
+}
