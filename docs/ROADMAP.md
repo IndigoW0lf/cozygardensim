@@ -8,7 +8,7 @@ This is genuine proposed work for the existing personal project, with estimates 
 - Three seed types, six beds, atomic purchases and one-time harvest payouts, XP/levels.
 - Pure elapsed-time simulation with deterministic moon boundaries and pause/visible-tab behavior.
 - Responsive keyboard-operable first loop and meaningful regression/browser coverage.
-- Raster-art slots and an explicit art brief. The illustrated set is in progress; the neutral slots are not final art.
+- Twelve transparent growth/bed illustrations, a cottage backdrop, art provenance and reduced-motion-aware harvest sway.
 
 ## 1. Local saves and recovery — 6–10 hours
 
@@ -30,7 +30,7 @@ Define valid parent pairs and bounded inherited traits, reproducible randomness,
 
 ## Review and polish track — 4–6 hours, after illustrated assets
 
-Review keyboard order/focus, a screen reader, reduced motion, real touch devices, narrow/landscape layouts and long sessions. Integrate approved art with an asset ledger; make stage transitions clear without relying on color or motion. Review actual player observations and fix reproducible issues. Automated Chromium checks do not complete this track.
+Review keyboard order/focus, a screen reader, reduced motion, real touch devices, narrow/landscape layouts and long sessions. Refine stage transitions without relying on color or motion; evaluate image delivery sizes while retaining source artwork. Review actual player observations and fix reproducible issues. Automated Chromium checks do not complete this track.
 
 ## Later possibilities — unestimated
 

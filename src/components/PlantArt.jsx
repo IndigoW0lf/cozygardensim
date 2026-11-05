@@ -1,8 +1,7 @@
 import React from 'react';
 import { ARTWORK, plantArtwork, artworkUrl } from '../art/manifest';
 
-// The owner requested illustrated raster art. Empty slots are deliberately
-// neutral; no generated SVG plant art is presented as the finished visual.
+// Shared square canvases align the root collar with the soil, at every age.
 export default function PlantArt({ speciesId = 'sunflower', stage = 'empty' }) {
   const plant = plantArtwork(speciesId, stage);
   const hasArt = ARTWORK.bed || plant;

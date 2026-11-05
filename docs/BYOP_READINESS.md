@@ -14,10 +14,10 @@ Assessment against the supplied requirements; no guarantee of acceptance.
 | Genuine activity | Last original work was February 2024; accurately described as a revived prototype with new preparation commits |
 | Secrets/history | Gitleaks 8.30.1 reported no findings in the 18 fetched commits and current tree at verified code head d8203b3; CI repeats the scans; limitations in AUDIT.md |
 | Real personal/regulated data | None required or identified in inspected code/history paths; test data is fictional; no accounts, analytics, database or uploads |
-| Assets | Inherited binaries matched to upstream MIT template; removed from current app; current icon is source-authored |
+| Assets | Inherited binaries matched to upstream MIT template; removed from current app; current icon is source-authored; generated raster set documented with exact prompts and root MIT scope in PROVENANCE.md |
 | Dependency licenses | Runtime MIT; locked development licenses are MIT, Apache-2.0, BSD-2-Clause, BSD-3-Clause, ISC and MPL-2.0; no missing/unlisted metadata identified |
 | Dependencies | npm audit found zero known vulnerabilities at preparation time; CI repeats the check |
-| Runtime verification | Historical baseline passed in run 41926711489. First-playable slice adds 30 local checks and updated desktop/mobile flows; check its PR/CI before treating the new head as verified |
+| Runtime verification | Historical baseline passed in run 41926711489. First-playable mechanics passed 30 tests and six desktop/mobile scenarios in run 42058955681; illustrated integration also passed locally; check the final PR head |
 | Excluded AI work | No AI model development/evaluation/training, inference service or compute infrastructure in the app |
 | Assistant collaboration | Small simulation/state transitions and observable browser behavior support human-directed, testable engineering |
 

@@ -6,6 +6,7 @@ import MagicIndicator from './components/MagicIndicator';
 import GameLogicManager from './components/GameLogicManager';
 import Store from './components/Store';
 import { togglePause } from './store/actions/gardenActions';
+import { ARTWORK, artworkUrl } from './art/manifest';
 
 function App() {
   const [selectedSeed, setSelectedSeed] = useState('sunflower');
@@ -14,7 +15,7 @@ function App() {
   const message = useSelector(state => state.garden.notice);
   const dispatch = useDispatch();
   return (
-    <main className="App">
+    <main className={`App${paused ? ' is-paused' : ''}`}>
       <header className="App-header">
         <div><p className="eyebrow">A SMALL PATCH OF POSSIBILITY</p>
           <h1>Cozy Garden Simulator</h1>
@@ -25,6 +26,10 @@ function App() {
           <span>Level {player.level} <small>{player.xp} XP · {player.totalHarvests} harvested</small></span>
         </div>
       </header>
+      <div className="garden-vignette" aria-hidden="true">
+        <img src={artworkUrl(ARTWORK.backdrop)} alt="" fetchPriority="high" />
+        <p>A little place to grow.<span>No rush. Just one lovely thing at a time.</span></p>
+      </div>
       <div className="garden-weather">
         <MagicIndicator />
         <button className="button button--quiet" onClick={() => dispatch(togglePause())}>

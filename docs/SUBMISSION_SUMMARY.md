@@ -13,13 +13,13 @@ This is preparation for the owner's review and form entry, not an application su
 | Stack | React 18, Redux, Vite, Vitest, Playwright; Node 22.12+ and npm |
 | Local setup | `npm ci --ignore-scripts`, then `npm run dev` |
 | Checks | `npm run check`; build followed by `npm run test:e2e` for browser checks |
-| Current state | First playable slice: three seed types, six beds, paid planting, timed growth, one-time harvests, coins/XP and pause; illustrated assets in progress |
+| Current state | First playable slice: three seed types, six beds, paid planting, timed growth, one-time harvests, coins/XP and pause; bundled illustrated growth stages and cottage scenery |
 | Data flow | Browser input to in-memory Redux state and local UI; fictional state; no accounts, database, telemetry, uploads or model integration |
-| Evidence | README, AUDIT.md, PROVENANCE.md, DEPENDENCY_LICENSES.json and successful CI run 41926711489 |
+| Evidence | README, AUDIT.md, PROVENANCE.md, DEPENDENCY_LICENSES.json and successful mechanics CI run 42058955681; inspect the final illustrated head’s checks |
 
 ## Draft project description
 
-Cozy Garden Simulator is my personally owned browser-game project, begun in February 2024 and revived in November 2026 in the same public repository. It is an early React/Redux prototype for a calm magical gardening simulation. The current implementation supports three seed types, six beds, paid planting, timed growth, a deterministic moon cycle, one-time harvest rewards, coins/XP and pause/resume. Recent preparation repaired startup and timing defects, migrated the build/test tooling, and added reproducible checks. The original history and MIT license are preserved. The app uses fictional local game state and has no player accounts, database, analytics, uploads or AI/model integration. My next development block is validated local saves/recovery, meaningful tending rules and a coherent breeding system. Illustrated art is in progress.
+Cozy Garden Simulator is my personally owned browser-game project, begun in February 2024 and revived in November 2026 in the same public repository. It is an early React/Redux prototype for a calm magical gardening simulation. The current implementation supports three seed types, six beds, paid planting, timed growth, a deterministic moon cycle, one-time harvest rewards, coins/XP and pause/resume. Recent preparation repaired startup and timing defects, migrated the build/test tooling, and added reproducible checks. The original history and MIT license are preserved. The app uses fictional local game state and has no player accounts, database, analytics, uploads or AI/model integration. My next development block is validated local saves/recovery, meaningful tending rules and a coherent breeding system. A documented generated-art set is bundled; no runtime AI service is used.
 
 Review this draft against the actual form and the work you intend to do. It does not assert that every historic resource/agreement has been independently verified.
 
